@@ -1,0 +1,28 @@
+---
+
+# Role tests
+
+- name: 'Converge | Prerequisites tasks'
+  hosts: 'bacula-fd-docker-xenial'
+  gather_facts: False
+  tasks:
+    - name: 'PREREQUISITES | APT | Do an apt-get update'
+      become: True
+      raw: 'apt-get update -qq'
+      changed_when: False
+    - name: 'PREREQUISITES | APT | Install python 2.7'
+      become: True
+      raw: 'apt-get install -qq python2.7'
+      changed_when: False
+
+
+- name: 'Converge | Main tasks'
+  hosts: 'all'
+  pre_tasks:
+    - name: 'PREREQUISITES | Install netstat'
+      become: True
+      package:
+        name: 'net-tools'
+      changed_when: False
+  roles:
+    - role: "ansible-role-bacula-fd"

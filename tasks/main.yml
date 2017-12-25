@@ -1,0 +1,27 @@
+---
+
+# Main tasks file for bacula-fd role
+
+- name: 'INIT | Manage variables to use for our target'
+  include: "{{ role_path }}/tasks/manage_variables.yml"
+  tags:
+    - 'role::bacula-fd'
+    - 'role::bacula-fd::config'
+    - 'role::bacula-fd::init'
+    - 'role::bacula-fd::install'
+
+
+- name: 'INSTALL | Manage OS family installation tasks'
+  include: "{{ role_path }}/tasks/install_{{ ansible_os_family | lower }}.yml"
+  become: True
+  tags:
+    - 'role::bacula-fd'
+    - 'role::bacula-fd::install'
+
+
+- name: 'CONFIG | Manage OS family configuration tasks'
+  include: "{{ role_path }}/tasks/config.yml"
+  become: True
+  tags:
+    - 'role::bacula-fd'
+    - 'role::bacula-fd::config'

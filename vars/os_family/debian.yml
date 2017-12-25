@@ -1,0 +1,6 @@
+---
+
+# Debian OS family variables
+
+_bacula_fd_system_dependencies:
+  - name: 'apt-transport-https'
