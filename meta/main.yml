@@ -5,7 +5,7 @@ galaxy_info:
   description: 'Ansible role to install Bacula file daemon'
   company: 'Infopen (http://www.infopen.pro)'
   license: 'MIT'
-  min_ansible_version: '2.2'
+  min_ansible_version: '2.3'
   github_branch: 'master'
   platforms:
     - name: 'Ubuntu'
