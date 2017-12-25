@@ -1,0 +1,14 @@
+---
+
+# Handlers main file for bacula-fd role
+
+- name: 'HANDLER | Restart bacula-fd'
+  become: True
+  service:
+    name: "{{ bacula_fd_service.name }}"
+    state: 'restarted'
+  when: "(bacula_fd_service.state | default('started')) == 'started'"
+  tags:
+    - 'role::bacula-fd'
+    - 'role::bacula-fd::config'
+    - 'role::bacula-fd::install'

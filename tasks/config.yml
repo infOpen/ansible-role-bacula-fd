@@ -1,0 +1,21 @@
+---
+
+# Common configuration tasks
+
+- name: 'CONFIG | Manage configuration file'
+  template:
+    src: "{{ role_path }}/templates/bacula-fd.conf.j2"
+    dest: "{{ bacula_fd_paths.files.config.path }}"
+    owner: "{{ bacula_fd_paths.files.config.owner | default('root') }}"
+    group: "{{ bacula_fd_paths.files.config.group | default('root') }}"
+    mode: "{{ bacula_fd_paths.files.config.mode | default('0400') }}"
+  notify: 'HANDLER | Restart bacula-fd'
+  validate: "{{ bacula_fd_paths.files.binary.path }} -t -c %s"
+
+
+- name: 'CONFIG | Manage service'
+  service:
+    name: "{{ bacula_fd_service.name }}"
+    state: "{{ bacula_fd_service.state | default('started') }}"
+    enabled: "{{ bacula_fd_service.enabled | default(True) }}"
+    use: "{{ bacula_fd_service.use | default(omit) }}"

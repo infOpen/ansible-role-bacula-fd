@@ -1,0 +1,28 @@
+---
+
+# Debian family installation tasks
+
+- name: 'INSTALL | APT | Install system dependencies'
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ bacula_fd_system_dependencies }}"
+
+- name: 'INSTALL | APT | Manage GPG key'
+  apt_key:
+    url: "{{ item.url }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ bacula_fd_gpg_keys }}"
+
+- name: 'INSTALL | APT | Manage repositories'
+  apt_repository:
+    filename: "{{ item.filename }}"
+    repo: "{{ item.repo }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ bacula_fd_repositories }}"
+
+- name: 'INSTALL | APT | Install packages'
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ bacula_fd_packages }}"

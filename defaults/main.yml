@@ -1,0 +1,53 @@
+---
+
+# Defaults vars file for bacula-fd role
+
+# Packages
+bacula_fd_gpg_keys: []
+bacula_fd_repositories: []
+bacula_fd_packages:
+  - name: 'bacula-client'
+bacula_fd_system_dependencies: "{{ _bacula_fd_system_dependencies }}"
+
+
+# Paths
+bacula_fd_paths:
+  dirs:
+    base:
+      path: '/var/lib/bacula'
+  files:
+    binary:
+      path: '/usr/sbin/bacula-fd'
+    config:
+      path: '/etc/bacula/bacula-fd.conf'
+
+
+# Service
+bacula_fd_service:
+  name: 'bacula-fd'
+  state: 'started'
+  enabled: True
+
+
+# Configuration
+bacula_fd_config: |
+  Director {
+    Name = backup01-dir
+    Password = "foo"
+  }
+  Director {
+    Name = backup01-mon
+    Password = "bar"
+    Monitor = yes
+  }
+  FileDaemon {
+    Name = backup01-fd
+    FDport = 9102
+    WorkingDirectory = /var/lib/bacula
+    Pid Directory = /var/run/bacula
+    Maximum Concurrent Jobs = 20
+  }
+  Messages {
+    Name = Standard
+    director = backup01-dir = all, !skipped, !restored, !saved
+  }
