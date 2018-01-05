@@ -1,8 +1,12 @@
 # bacula-fd
 
-[![Build Status](https://travis-ci.org/infOpen/ansible-role-bacula-fd.svg?branch=master)](https://travis-ci.org/infOpen/ansible-role-bacula-fd)
+[![Build Status](https://img.shields.io/travis/infOpen/ansible-role-bacula-fd/master.svg?label=travis_master)](https://travis-ci.org/infOpen/ansible-role-bacula-fd)
+[![Build Status](https://img.shields.io/travis/infOpen/ansible-role-bacula-fd/develop.svg?label=travis_develop)](https://travis-ci.org/infOpen/ansible-role-bacula-fd)
+[![Updates](https://pyup.io/repos/github/infOpen/ansible-role-bacula-fd/shield.svg)](https://pyup.io/repos/github/infOpen/ansible-role-bacula-fd/)
+[![Python 3](https://pyup.io/repos/github/infOpen/ansible-role-bacula-fd/python-3-shield.svg)](https://pyup.io/repos/github/infOpen/ansible-role-bacula-fd/)
+[![Ansible Role](https://img.shields.io/ansible/role/22983.svg)](https://galaxy.ansible.com/infOpen/bacula-fd/)
 
-Install bacula-fd package.
+Install and configure bacula-fd package.
 
 ## Requirements
 
